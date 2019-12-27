@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class CreateMainLogsTable extends Migration
+class CreateMainComponentLogsTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,7 +13,7 @@ class CreateMainLogsTable extends Migration
      */
     public function up()
     {
-        Schema::create('main_logs', function (Blueprint $table) {
+        Schema::create('main_component_logs', function (Blueprint $table) {
             $table->bigIncrements('id');
             $table->string('RFID');
             $table->datetime('check_in',0);

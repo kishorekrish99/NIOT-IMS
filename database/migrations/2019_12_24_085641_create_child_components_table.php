@@ -18,7 +18,7 @@ class CreateChildComponentsTable extends Migration
             $table->bigInteger('main_component_fk');
             $table->foreign('main_component_fk')->references('id')->on('main_components');
             $table->string('name');
-            $table->Integer('parent_flag');
+            $table->Integer('parent_table');
             $table->timestamps();
         });
     }

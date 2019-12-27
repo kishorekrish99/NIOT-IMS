@@ -16,7 +16,7 @@ class CreateSubComponentLogsTable extends Migration
         Schema::create('sub_component_logs', function (Blueprint $table) {
             $table->bigIncrements('id');
             $table->bigInteger('main_log_fk');
-            $table->foreign('main_log_fk')->references('id')->on('main_logs');
+            $table->foreign('main_log_fk')->references('id')->on('main_component_logs');
             $table->string('RFID');
             $table->bigInteger('child_component_fk');
             $table->foreign('child_component_fk')->references('id')->on('child_components');
