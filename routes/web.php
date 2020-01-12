@@ -1,6 +1,7 @@
 <?php
-use App\MainComponent;
-use App\ChildComponent;
+use App\Component;
+use App\rfid;
+use App\Department;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Input;
 /*
@@ -45,26 +46,33 @@ Route::get('triggerevent/{name}', function ($name) {
 });
 
 
-Route::get('/main/{name}/',function($name){
-    $main=new MainComponent;
+Route::get('/component/{parent_id}/{name}',function($id, $name){
+    $main=new Component;
+    $main->parent_id = $id;
     $main->name=$name;
     $main->save();
     return $main::all();
 });
-Route::get('/sub/{id_fk}/{name}/{parent}',function($fk,$name,$parent){
-    $sub=new ChildComponent;
-    $sub->main_Component_fk=$fk;
-    $sub->name=$name;
-    $sub->parent_table=$parent;
-    $sub->save();
-    return $sub::all();
+
+Route::get('/department/{dept_name}',function($name){
+    $dept = new Department;
+    $dept->name = $name;
+    $dept->save();
+    return $dept::all();
 });
 
-Route::get('/getallsubcomponents',function(){
-    $sub=new ChildComponent;
-    return json_encode($sub::all());
+Route::get('assignrfid/{rfid}/{component_id}',function($r_id, $comp_id){
+    $rfid = new rfid;
+    $rfid->RFID = $r_id;
+    $rfid->component_id = $comp_id;
+    $rfid->department_id = 1; //1 -rfid assigning department
+    $rfid->save();
+    return $rfid::all();
 });
 
-Route::any('/api/RFIDScanned',function(){
-    return 'RFID';
+Route::get('/getallcomponents',function(){
+    $comp=new Component;
+    return json_encode($comp::all());
 });
+
+Route::get('/api/RFIDScanned','RfidController@scanned');
