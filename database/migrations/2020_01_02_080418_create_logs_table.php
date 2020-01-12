@@ -17,8 +17,8 @@ class CreateLogsTable extends Migration
             $table->bigIncrements('id');
             $table->bigInteger('rfid_id');
             $table->foreign('rfid_id')->references('id')->on('rfids');
-            $table->dateTime('check_in');
-            $table->dateTime('check_out');
+            $table->dateTime('check_in')->nullable();
+            $table->dateTime('check_out')->nullable();
             $table->bigInteger('department_id');
             $table->foreign('department_id')->references('id')->on('departments');
             $table->timestamps();

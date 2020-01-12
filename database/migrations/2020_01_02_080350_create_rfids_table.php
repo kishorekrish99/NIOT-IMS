@@ -16,7 +16,7 @@ class CreateRfidsTable extends Migration
         Schema::create('rfids', function (Blueprint $table) {
             $table->bigIncrements('id');
             $table->string('RFID');
-            $table->bigInteger('department_id');
+            $table->bigInteger('department_id')->default(null);
             $table->foreign('department_id')->references('id')->on('Departments');
             $table->bigInteger('component_id');
             $table->foreign('component_id')->references('id')->on('components');
