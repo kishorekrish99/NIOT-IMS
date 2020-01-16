@@ -58,7 +58,8 @@ from
     //dd($d);
     return $d;
 });
-
+Route::get('getlogs','LogsController@getLogView')->name('getlogviewbyrfid');
+Route::get('getlog','LogsController@getLog')->name('getlogbyrfid');
 
 //custom routes
 

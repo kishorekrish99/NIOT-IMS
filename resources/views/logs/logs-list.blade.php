@@ -1,14 +1,48 @@
 @extends('layouts.app')
 @section('content')
 <link rel="stylesheet" type="text/css" href="{{url('assets/plugins/jquery-ui-1.12.1/jquery-ui.min.css')}}">
+<div class="master-details">
+    <form method="GET" action="{{route('getlogviewbyrfid')}}">
+       <div class="row">
+            
+            <div class="col-sm-3 my-1">
+              <label class="sr-only" for="inlineFormInputGroupUsername">RFID</label>
+              <div class="input-group">
+                <div class="input-group-prepend">
+                  <div class="input-group-text">RFID</div>
+                </div>
+                <input type="text" class="form-control" id="inlineFormInputGroupUsername" placeholder="RFID" value="{{$rfid}}" name="rfid">
+              </div>
+            </div>
+            
+            <div class="col-sm-3 my-1">
+              <label class="sr-only" for="inlineFormInputGroupUsername">Component Name</label>
+              <div class="input-group">
+                <div class="input-group-prepend">
+                  <div class="input-group-text">icon</div>
+                </div>
+                <input type="text" class="form-control" id="inlineFormInputGroupUsername" placeholder="Component name" value="{{$cname}}" disabled="true">
+              </div>
+            </div>
+
+            <div class="col-sm-3 my-1">
+              <label class="sr-only" for="inlineFormInputGroupUsername">Department Name</label>
+              <div class="input-group">
+                <div class="input-group-prepend">
+                  <div class="input-group-text">Dept.</div>
+                </div>
+                <input type="text" class="form-control" id="inlineFormInputGroupUsername" placeholder="RFID" value="{{$dept}}" disabled="true">
+              </div>
+            </div>
+            <input type="submit" class="btn btn-primary">
+        </div>        
+    </form>
+</div>
 <table id="example" class="table table-striped table-bordered" style="width:100%">
         <thead>
             <tr>
                 <th>SNO</th>
-                <th>RFID</th>
-                <th>Department(belongsTo)
-                <th>Component Name</th>
-                <th>Department(Available in)</th>
+                <th>Department</th>
                 <th>Check_in</th>
                 <th>Check_out</th>
             </tr>
@@ -26,7 +60,6 @@
     </table>
 @endsection
 @section('js')
-    <script src="//js.pusher.com/3.1/pusher.min.js"></script>
     <script type="text/javascript" src="{{url('assets/plugins/jquery-ui-1.12.1/jquery-ui.min.js')}}"></script>
 <script>
     $(document).ready( function () {
@@ -54,13 +87,11 @@ $(document).ready(function() {
     var table = $('#example').DataTable( {
         "processing": true,
         stateSave: true,
-        "ajax": "{{url('getDepartmentList')}}",
+        "ajax": "{{url('getlog/?rfid='.$rfid)}}",
         "createdRow": function ( row, data, index ) {
             $('td', row).eq(index+1).attr('id', Object.keys(data)[index]);
             $('td', row).eq(index+2).attr('id', Object.keys(data)[index+1]);
             $('td', row).eq(index+3).attr('id', Object.keys(data)[index+2]);
-            $('td', row).eq(index+4).attr('id', Object.keys(data)[index+3]);
-            $('td', row).eq(index+5).attr('id', Object.keys(data)[index+4]);
         },
         "columns": [
             {
@@ -68,22 +99,11 @@ $(document).ready(function() {
                 "data":           null,
                 "defaultContent": ''
             },
-            { data: "RFID",
-            "orderable": false,
-                        "render": function(data,type,row,meta) { // render event defines the markup of the cell text 
-                            var a = '<a href="/getlogs/?rfid='+data+'" target="_blank"><i class="fa fa-edit"></i> '+data+'</a>'; // row object contains the row data
-                            return a; }
-                        },
-            { data: "belongsto"},
-            { data: "cname" },
-            { data: "dname" },
+            { data: "dname"},
             { data: "check_in" },
             { data: "check_out"},
         ],
-        "autoWidth": true,
-        rowId: function(data) {
-            return data.RFID;
-      },
+        "autoWidth": true,        
         "order": [[1, 'asc']]
     } );
     table.on( 'order.dt search.dt', function () {
@@ -115,31 +135,5 @@ $(document).ready(function() {
         }
     } );*/
 } );
-//pusher start
-    // Enable pusher logging - don't include this in production
-    Pusher.logToConsole = true;
-
-    var pusher = new Pusher('1d2dd1e49b72be42e451', {
-        cluster: 'ap2'
-    });
-
-    // Subscribe to the channel we specified in our Laravel Event
-    var channel = pusher.subscribe('RFID-Scanned');
-
-    // Bind a function to a Event (the full Laravel class)
-    channel.bind('App\\Events\\RFIDScanned', function (data) {
-        console.log(data);
-        $('#'+data['RFID']+' #'+data['message']+'')[0].innerText=data['time'];
-        $('#'+data['RFID']+' #'+data['message']+'').effect("highlight", {color: "#ccffb3"}, 3000);
-        if(data['message']=='check_in'){
-            $('#'+data['RFID']+' #dname')[0].innerText = data['department'];
-            $('#'+data['RFID']+' #check_out'+'')[0].innerText=' ';
-            $('#'+data['RFID']+' #check_out').effect("highlight", {color: "#ccffb3"}, 3000);
-            $('#'+data['RFID']+' #dname').effect("highlight", {color: "#ccffb3"}, 3000);
-        }
-        //cell.data( cell.data() + 1 ).draw();
-
-    });
-//pusher stop
     </script>
 @endsection
