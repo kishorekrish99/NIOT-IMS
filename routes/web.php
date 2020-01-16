@@ -44,8 +44,8 @@ Route::get('getDepartmentList',function(){
   [d].name as belongsto,
   [components].[name] as [cname],
   [departments].[name] as [dname],
-  format([logs].[check_in],'dd/MM/yyyy, hh:mm:ss tt') as check_in,
-  format([logs].[check_out],'dd/MM/yyyy, hh:mm:ss tt') as check_out
+  format([logs].[check_in],'MMM dd, yyyy, hh:mm:ss tt') as check_in,
+  format([logs].[check_out],'MMM dd, yyyy, hh:mm:ss tt') as check_out
 from
   [current_status]
   inner join [rfids] as [a] on [a].[id] = [current_status].[rfid_id]

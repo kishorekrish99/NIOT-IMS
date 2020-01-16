@@ -68,12 +68,17 @@ $(document).ready(function() {
                 "data":           null,
                 "defaultContent": ''
             },
-            { data: "RFID" },
+            { data: "RFID",
+            "orderable": false,
+                        "render": function(data,type,row,meta) { // render event defines the markup of the cell text 
+                            var a = '<a href="/getlogs/'+data+'" target="_blank"><i class="fa fa-edit"></i> '+data+'</a>'; // row object contains the row data
+                            return a; }
+                        },
             { data: "belongsto"},
             { data: "cname" },
             { data: "dname" },
             { data: "check_in" },
-            { data: "check_out"}
+            { data: "check_out"},
         ],
         "autoWidth": true,
         rowId: function(data) {

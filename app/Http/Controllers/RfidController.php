@@ -99,9 +99,13 @@ class RfidController extends Controller
                 if(count($time_limit)>0){
                     if(Carbon::parse($time_limit[0]->check_in)->diffInSeconds(Carbon::now()->format('Y-m-d H:i:s'))>$scan_diff){
                         //perform checkout operation
-                        $log = Log::where('rfid_id',$rfid2->id)->latest()->take(1)->update(['check_out' => Carbon::now()->format('Y-m-d H:i:s') ]);
+                        //dd(Carbon::now()->format('g:i A'));
+                        $time = Carbon::now()->format('Y-m-d H:i:s');
+                        $log = Log::where('rfid_id',$rfid2->id)->latest()->take(1)->update(['check_out' => $time ]);
+                        //dd($time->format('g:i A'));
+                        //dd(Carbon::parse($time)->isoFormat('MMM Do YYYY h:mm:ss a'));
                         $log = Log::where('rfid_id',$rfid2->id)->select('*')->latest()->take(1)->get();
-                        event(new RFIDScanned($rfid,$scanned_dept_id,'check_out',$log[0]->check_out));
+                        event(new RFIDScanned($rfid,$scanned_dept_id,'check_out',Carbon::parse($time)->isoFormat('MMM Do YYYY h:mm:ss a')));
                         return "performed check-out";
                     }
                     else 
@@ -113,12 +117,13 @@ class RfidController extends Controller
                     if(count($time_limit)==1 && Carbon::parse($time_limit[0]->check_out)->diffInSeconds(Carbon::now()->format('Y-m-d H:i:s'))>$scan_diff){
                         $log = new Log;
                         $log->rfid_id = $rfid2->id;
-                        $log->check_in = Carbon::now()->format('Y-m-d H:i:s');
+                        $time = Carbon::now()->format('Y-m-d H:i:s');
+                        $log->check_in = $time;
                         $log->department_id = $scanned_dept_id;
                         $log->save();
                         $current_status = CurrentStatus::updateorCreate(['rfid_id' => $log->rfid_id],['log_id' => $log->id]);
                         $departmet_name = Department::select('name')->where('id',$scanned_dept_id)->get();
-                        event(new RFIDScanned($rfid,$departmet_name[0]->name,'check_in',$log->check_in));
+                        event(new RFIDScanned($rfid,$departmet_name[0]->name,'check_in',Carbon::parse($time)->isoFormat('MMM Do YYYY h:mm:ss a')));
                         return "performed check-in";
                     }
                     else{
