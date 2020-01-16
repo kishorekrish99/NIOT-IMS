@@ -33,12 +33,34 @@ Route::get('search',function(){
     return view('search.find');
 })->name('search');
 
+Route::get('list','DepartmentController@getDepartmentList');
 
 
 
 
+Route::get('getDepartmentList',function(){
+    $data =collect(DB::select("select
+  [a].[RFID],
+  [d].name as belongsto,
+  [components].[name] as [cname],
+  [departments].[name] as [dname],
+  format([logs].[check_in],'dd/MM/yyyy, hh:mm:ss tt') as check_in,
+  format([logs].[check_out],'dd/MM/yyyy, hh:mm:ss tt') as check_out
+from
+  [current_status]
+  inner join [rfids] as [a] on [a].[id] = [current_status].[rfid_id]
+  inner join [logs] on [logs].[id] = [current_status].[log_id]
+  inner join [departments] on [logs].[department_id] = [departments].[id]
+  inner join [components] on [a].[component_id] = [components].[id]
+  inner join [departments] as [d] on [d].[id] = [a].[department_id]"));
+    $d["data"] = $data;
+    //dd((($d["data"])));
+    //dd($d);
+    return $d;
+});
 
 
+//custom routes
 
 Route::get('triggerevent/{name}', function ($name) {
     event(new App\Events\RFIDScanned($name));

@@ -12,12 +12,11 @@
 <body>
     @include('layouts.header')
     
-    <div id="app">
 
-        <main class="py-4">
+        <div class="container-fluid">
             @yield('content')
-        </main>
-    </div>
+        </div>
+    
     @include('layouts.footer')
 
     @yield('js')
