@@ -57,11 +57,22 @@ $(document).ready(function() {
         "ajax": "{{url('getDepartmentList')}}",
         "createdRow": function ( row, data, index ) {
             $('td', row).eq(index+1).attr('id', Object.keys(data)[index]);
-            $('td', row).eq(index+2).attr('id', Object.keys(data)[index+1]);
-            $('td', row).eq(index+3).attr('id', Object.keys(data)[index+2]);
-            $('td', row).eq(index+4).attr('id', Object.keys(data)[index+3]);
-            $('td', row).eq(index+5).attr('id', Object.keys(data)[index+4]);
+            
         },
+        'columnDefs': [
+     {
+        targets: '_all',
+        'createdCell':  function (td, cellData, rowData, row, col) {
+            console.log(Object.keys(rowData)[col]);
+            if(col!=5 && col!=6)
+                $(td).attr('id', Object.keys(rowData)[col]); 
+            else if(col==5)
+                $(td).attr('id', 'check_in'); 
+            else
+                $(td).attr('id', 'check_out'); 
+        }
+     }
+  ],
         "columns": [
             {
                 "orderable":      false,
@@ -83,8 +94,7 @@ $(document).ready(function() {
         "autoWidth": true,
         rowId: function(data) {
             return data.RFID;
-      },
-        "order": [[1, 'asc']]
+      }        
     } );
     table.on( 'order.dt search.dt', function () {
         table.column(0, {search:'applied', order:'applied'}).nodes().each( function (cell, i) {

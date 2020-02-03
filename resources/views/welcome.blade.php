@@ -55,7 +55,7 @@
                             </div>
                             <div class="error"></div>
                             <div class="form loginBox">
-                                <form method="POST" accept-charset="UTF-8" action="{{ route('login') }}">
+                                <form method="POST" accept-charset="UTF-8" action="{{ url('login') }}">
                                     @csrf
                                     <input id="email" class="form-control" name="email" type="text" placeholder="Email" name="email">
                                     @error('email')
