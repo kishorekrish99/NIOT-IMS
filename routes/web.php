@@ -25,7 +25,7 @@ Route::get('/home', 'HomeController@index')->name('home');
 Route::get('/api/RFIDScanned','RfidController@scanned');
 
 
-Route::get('aboutus',function(){
+Route::get('/aboutus',function(){
     return view('about');
 })->name('about');
 
@@ -58,7 +58,8 @@ from
     //dd($d);
     return $d;
 });
-
+Route::get('getlogs','LogsController@getLogView')->name('getlogviewbyrfid');
+Route::get('getlog','LogsController@getLog')->name('getlogbyrfid');
 
 //custom routes
 
@@ -96,5 +97,3 @@ Route::get('/getallcomponents',function(){
     $comp=new Component;
     return json_encode($comp::all());
 });
-
-Route::get('/api/RFIDScanned','RfidController@scanned');
