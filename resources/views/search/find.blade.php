@@ -9,20 +9,23 @@
                 <th>Department(belongsTo)
                 <th>Component Name</th>
                 <th>Department(Available in)</th>
+                <th>Status</th>
                 <th>Check_in</th>
                 <th>Check_out</th>
             </tr>
         </thead>
-        <!--<tfoot>
+        <tfoot>
             <tr>
                 <th>SNO</th>
                 <th>RFID</th>
+                <th>Department(belongsTo)
                 <th>Component Name</th>
-                <th>Department</th>
+                <th>Department(Available in)</th>
+                <th>Status</th>
                 <th>Check_in</th>
                 <th>Check_out</th>
             </tr>
-        </tfoot>-->
+        </tfoot>
     </table>
 @endsection
 @section('js')
@@ -49,7 +52,7 @@
         '</tr>'+
     '</table>';
 }
- 
+ var array = ['RFID','belongsto','cname','dname','status','check_in','check_out'];
 $(document).ready(function() {
     var table = $('#example').DataTable( {
         "processing": true,
@@ -61,15 +64,10 @@ $(document).ready(function() {
         },
         'columnDefs': [
      {
-        targets: '_all',
+        targets: [1,2,3,4,5,6,7],
         'createdCell':  function (td, cellData, rowData, row, col) {
-            console.log(Object.keys(rowData)[col]);
-            if(col!=5 && col!=6)
-                $(td).attr('id', Object.keys(rowData)[col]); 
-            else if(col==5)
-                $(td).attr('id', 'check_in'); 
-            else
-                $(td).attr('id', 'check_out'); 
+            console.log(array[col]+"col="+col);
+            $(td).attr('id',array[col-1]); 
         }
      }
   ],
@@ -88,6 +86,7 @@ $(document).ready(function() {
             { data: "belongsto"},
             { data: "cname" },
             { data: "dname" },
+            { data: "status_name"},
             { data: "check_in" },
             { data: "check_out"},
         ],
@@ -138,14 +137,19 @@ $(document).ready(function() {
 
     // Bind a function to a Event (the full Laravel class)
     channel.bind('App\\Events\\RFIDScanned', function (data) {
-        console.log(data);
+        console.log(data['status']);
         $('#'+data['RFID']+' #'+data['message']+'')[0].innerText=data['time'];
         $('#'+data['RFID']+' #'+data['message']+'').effect("highlight", {color: "#ccffb3"}, 3000);
         if(data['message']=='check_in'){
             $('#'+data['RFID']+' #dname')[0].innerText = data['department'];
             $('#'+data['RFID']+' #check_out'+'')[0].innerText=' ';
+            $('#'+data['RFID']+' #status')[0].innerText = data['status'];
             $('#'+data['RFID']+' #check_out').effect("highlight", {color: "#ccffb3"}, 3000);
             $('#'+data['RFID']+' #dname').effect("highlight", {color: "#ccffb3"}, 3000);
+        }
+        console.log(data['message']=== 'check_out');
+        if(data['message'] === 'check_out'){
+            $('#'+data['RFID']+' #status'+'')[0].innerText='in Department';
         }
         //cell.data( cell.data() + 1 ).draw();
 

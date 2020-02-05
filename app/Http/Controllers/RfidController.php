@@ -10,6 +10,8 @@ use App\Log;
 use App\CurrentStatus;
 use App\Events\RFIDScanned;
 use DB;
+use App\Status;
+use App\Scanners;
 class RfidController extends Controller
 {
     /**
@@ -92,6 +94,7 @@ class RfidController extends Controller
         $scan_diff = 2;    //in seconds
         $rfid = $request->input('RFID');
         $scanned_dept_id = $request->input('dept');
+        $scanner_id = $request->input('scanner_id');
         $rfid_fk = rfid::select('id','department_id')->where('RFID',$rfid)->get();
         if(count($rfid_fk)>0){
             foreach ($rfid_fk as $rfid2) {
@@ -108,6 +111,8 @@ class RfidController extends Controller
                             //dd($time->format('g:i A'));
                             //dd(Carbon::parse($time)->isoFormat('MMM Do YYYY h:mm:ss a'));
                             $log = Log::where('rfid_id',$rfid2->id)->select('*')->latest()->take(1)->get();
+                            $current_status = CurrentStatus::updateorCreate(['rfid_id' => $rfid2->id],['status_id' => '5']);
+                            //return $rfid2->id;
                             event(new RFIDScanned($rfid,$scanned_dept_id,'check_out',Carbon::parse($time)->isoFormat('MMM Do YYYY h:mm:ss a')));
                             return "performed check-out";
                         }
@@ -123,10 +128,13 @@ class RfidController extends Controller
                         $time = Carbon::now()->format('Y-m-d H:i:s');
                         $log->check_in = $time;
                         $log->department_id = $scanned_dept_id;
+                        $log->scanner_id = $scanner_id;
                         $log->save();
-                        $current_status = CurrentStatus::updateorCreate(['rfid_id' => $log->rfid_id],['log_id' => $log->id]);
+                        $status = Scanners::where('scanner_id',$scanner_id)->first();
+                        $current_status = CurrentStatus::updateorCreate(['rfid_id' => $log->rfid_id],['log_id' => $log->id],['status_id' => $status['id']]);
                         $departmet_name = Department::select('name')->where('id',$scanned_dept_id)->get();
-                        event(new RFIDScanned($rfid,$departmet_name[0]->name,'check_in',Carbon::parse($time)->isoFormat('MMM Do YYYY h:mm:ss a')));
+                        $status_name = Status::find($status->id);
+                        event(new RFIDScanned($rfid,$departmet_name[0]->name,'check_in',Carbon::parse($time)->isoFormat('MMM Do YYYY h:mm:ss a'),$status_name->name));
                         return "performed check-in";
                     }
                     else{
@@ -140,10 +148,14 @@ class RfidController extends Controller
                 $time = Carbon::now()->format('Y-m-d H:i:s');
                 $log->check_in = $time;
                 $log->department_id = $scanned_dept_id;
+                $log->scanner_id = $scanner_id;
                 $log->save();
-                $current_status = CurrentStatus::updateorCreate(['rfid_id' => $log->rfid_id],['log_id' => $log->id]);
+                $status = Scanners::where('scanner_id',$scanner_id)->first();
+                $current_status = CurrentStatus::updateorCreate(['rfid_id' => $log->rfid_id],['log_id' => $log->id],['status_id' => 2]);
                 $departmet_name = Department::select('name')->where('id',$scanned_dept_id)->get();
-                event(new RFIDScanned($rfid,$departmet_name[0]->name,'check_in',Carbon::parse($time)->isoFormat('MMM Do YYYY h:mm:ss a')));
+                $status = Scanners::where('scanner_id',$scanner_id)->first();
+                $status_name = Status::find($status->id);
+                event(new RFIDScanned($rfid,$departmet_name[0]->name,'check_in',Carbon::parse($time)->isoFormat('MMM Do YYYY h:mm:ss a'),$status_name->name));
                 return "performed check-in";
             }
             }
@@ -155,9 +167,11 @@ class RfidController extends Controller
             $log->check_in = $time;
             $log->department_id = $scanned_dept_id;
             $log->save();
-            $current_status = CurrentStatus::updateorCreate(['rfid_id' => $log->rfid_id],['log_id' => $log->id]);
+            $current_status = CurrentStatus::updateorCreate(['rfid_id' => $log->rfid_id],['log_id' => $log->id],['status_id' => 2]);
             $departmet_name = Department::select('name')->where('id',$scanned_dept_id)->get();
-            event(new RFIDScanned($rfid,$departmet_name[0]->name,'check_in',Carbon::parse($time)->isoFormat('MMM Do YYYY h:mm:ss a')));
+            $status = Scanners::where('scanner_id',$scanner_id)->first();
+            $status_name = Status::find($status->id);
+            event(new RFIDScanned($rfid,$departmet_name[0]->name,'check_in',Carbon::parse($time)->isoFormat('MMM Do YYYY h:mm:ss a'),$status_name->name));
             return "performed check-in";
                     
         }

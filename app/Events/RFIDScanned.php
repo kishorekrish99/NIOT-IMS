@@ -14,18 +14,19 @@ class RFIDScanned implements ShouldBroadcast
 {
     use Dispatchable, InteractsWithSockets, SerializesModels;
 
-    public $RFID,$department,$message,$time;
+    public $RFID,$department,$message,$time,$status;
     /**
      * Create a new event instance.
      *
      * @return void
      */
-    public function __construct($RFID,$department,$message,$time)
+    public function __construct($RFID,$department,$message,$time,$status = '')
     {
         $this->message = $message;
         $this->time = $time;
         $this->RFID = $RFID;
         $this->department = $department;
+        $this->status = $status;
     }
 
     /**

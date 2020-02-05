@@ -44,6 +44,7 @@ Route::get('getDepartmentList',function(){
   [d].name as belongsto,
   [components].[name] as [cname],
   [departments].[name] as [dname],
+  [statuses].[name] as [status_name],
   format([logs].[check_in],'MMM dd, yyyy, hh:mm:ss tt') as check_in,
   format([logs].[check_out],'MMM dd, yyyy, hh:mm:ss tt') as check_out
 from
@@ -52,7 +53,8 @@ from
   inner join [logs] on [logs].[id] = [current_status].[log_id]
   inner join [departments] on [logs].[department_id] = [departments].[id]
   inner join [components] on [a].[component_id] = [components].[id]
-  inner join [departments] as [d] on [d].[id] = [a].[department_id]"));
+  inner join [departments] as [d] on [d].[id] = [a].[department_id]
+  inner join [statuses] on [current_status].[status_id] = [statuses].[id]"));
     $d["data"] = $data;
     //dd((($d["data"])));
     //dd($d);

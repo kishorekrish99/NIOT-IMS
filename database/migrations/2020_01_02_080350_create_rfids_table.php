@@ -20,6 +20,8 @@ class CreateRfidsTable extends Migration
             $table->foreign('department_id')->references('id')->on('Departments');
             $table->bigInteger('component_id');
             $table->foreign('component_id')->references('id')->on('components');
+            $table->bigInteger('unit_id');
+            $table->foreign('unit_id')->references('id')->on('units');
             $table->timestamps();
         });
     }

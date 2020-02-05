@@ -18,6 +18,8 @@ class CreateCurrentStatusTable extends Migration
             $table->foreign('rfid_id')->references('id')->on('rfids');
             $table->bigInteger('log_id');
             $table->foreign('log_id')->references('id')->on('logs');
+            $table->bigInteger('status_id') ;
+            $table->foreign('status_id')->references('id')->on('statuses');
         });
     }
 
