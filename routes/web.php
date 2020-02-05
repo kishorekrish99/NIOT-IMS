@@ -27,7 +27,7 @@ Route::get('/api/RFIDScanned','RfidController@scanned');
 
 Route::get('/aboutus',function(){
     return view('about');
-})->name('about');
+})->name('aboutus');
 
 Route::get('search',function(){
     return view('search.find');

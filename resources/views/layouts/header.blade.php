@@ -15,6 +15,8 @@
 
                 <!-- Right Side Of Navbar -->
                 <ul class="navbar-nav ml-auto">
+                    <li class="nav-item"><a class="nav-link" href="{{route('aboutus')}}">About Us</a></li>
+                    <li class="nav-item"><a class="nav-link" href="#">Contact Us</a></li>
                     <!-- Authentication Links -->
                     @guest
                         <li class="nav-item">

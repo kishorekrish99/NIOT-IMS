@@ -12,7 +12,7 @@
     <!-- Content -->
     <div class="text-white text-center d-flex align-items-center rgba-black-strong py-5 px-4 btn-group-vertical">
         <a class=" btn btn-blue" style="width: 40%;" href="{{route('search')}}"> SEARCH</a>
-        <a class=" btn btn-blue" style="width: 40%;" href="{{route('about')}}"> About</a>
+        <a class=" btn btn-blue" style="width: 40%;" href="{{route('aboutus')}}"> About</a>
       </div>
     </div>
   </div>

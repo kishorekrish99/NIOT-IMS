@@ -2,11 +2,16 @@
 @section('css')
 <link href="{{url('assets/css/login-register.css')}}" rel="stylesheet" />
 <script type="text/javascript" src="{{url('assets/js/login-register.js')}}"></script>
+<style>
+    .mt-5, .my-5 {
+        margin-top: -25px !important;
+}
+</style>
 @endsection
 @section('content')
 <div class="row">
     <div class="col">
-    <div id="carouselExampleIndicators" class="carousel slide" data-ride="carousel" style="width:150%;padding-top:10%;">
+    <div id="carouselExampleIndicators" class="carousel slide" data-ride="carousel" style="width:150%;padding-top:2%;">
             <ol class="carousel-indicators">
                 <li data-target="#carouselExampleIndicators" data-slide-to="0" class="active"></li>
                 <li data-target="#carouselExampleIndicators" data-slide-to="1"></li>
@@ -17,10 +22,10 @@
                     <img class="d-block w-100" src="{{url('assets/images/11.png')}}" alt="First slide">
                 </div>
                 <div class="carousel-item">
-                    <img class="d-block w-100" src="{{url('assets/images/11.png')}}" alt="Second slide">
+                    <img class="d-block w-100" src="{{url('assets/images/cmrec.jpg')}}" alt="Second slide" height="550px">
                 </div>
                 <div class="carousel-item">
-                    <img class="d-block w-100" src="{{url('assets/images/11.png')}}" alt="Third slide">
+                    <img class="d-block w-100" src="{{url('assets/images/niot.png')}}" alt="Third slide" height="550px">
                 </div>
             </div>
             <a class="carousel-control-prev" href="#carouselExampleIndicators" role="button" data-slide="prev">
@@ -162,33 +167,33 @@
     </div>
 </div>
 <!---------------Cards---------------------->
-<div class="row" style=";padding-top:10%;">
-    <div style="padding-left:35px;">
-        <div class="card text-white bg-primary mb-3" style="max-width: 18rem;">
+<div class="row" style=";padding-top:1%;">
+    <div style="padding-left:5%;">
+        <div class="card text-white bg-primary mb-3" style="max-width: 25rem;">
                 <div class="card-header">Inventory Management System</div>
                 <div class="card-body">
                     <p class="card-text">Inventory management software is a software system for tracking inventory levels, orders, sales and deliveries.It can also be used in the manufacturing industry to create a work order, bill of materials and other production documents. </p>
                 </div>
         </div>
     </div>  
-    <div style="padding-left:35px;">
-        <div class="card text-white bg-primary mb-3" style="max-width: 18rem;">
-            <div class="card-header">RF ID</div>
+    <div style="padding-left:5%">
+        <div class="card text-white bg-primary mb-3" style="max-width: 25rem;">
+            <div class="card-header">RFID</div>
             <div class="card-body">
                 <p class="card-text">Radio-frequency identification (RFID) uses electromagnetic fields to automatically identify and track tags attached to objects. An RFID tag consists of a tiny radio transponder; a radio receiver and transmitter.</p>
             </div>
         </div>
     </div>
-    <div style="padding-left:35px;">
-        <div class="card text-white bg-primary mb-3" style="max-width: 18rem;">
+    <div style="padding-left:5%;">
+        <div class="card text-white bg-primary mb-3" style="max-width: 25rem;">
             <div class="card-header">VISION</div>
             <div class="card-body">
-            <p>The project aims to create a hassle free software interface to manage the inventory using RFID tech. Software records the position of the inventory along with time &nbsp &nbsp &nbsp &nbsp &nbsp and keep track of the dept.&nbsp &nbsp &nbsp &nbsp</p>
+            <p>The project aims to create a hassle free software interface to manage the inventory using RFID tech. Software records the position of the inventory along with time and keep track of the dept.&nbsp </p>
             </div>
         </div>
     </div>
-    <div class="col">
-    <iframe width="350" height="250" src="https://www.youtube.com/embed/WgZe7Q5BDig" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+    <div class="col" style="padding-left: 5%;">
+    <iframe width="350" height="200" src="https://www.youtube.com/embed/WgZe7Q5BDig" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
     </div>
 </div>
 <!-----------footer--------------------------->
