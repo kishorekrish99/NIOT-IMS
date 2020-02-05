@@ -1,0 +1,540 @@
+.menu{
+align-items:center;
+
+
+
+
+}
+.example1 {
+ 
+  height: 50px;	
+  overflow: hidden;
+  position: relative;
+ }
+ .example1 h3 {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  margin: 0;
+  line-height: 50px;
+  text-align: center;
+  /* Starting position */
+  -moz-transform:translateX(100%);
+  -webkit-transform:translateX(100%);	
+  transform:translateX(100%);
+  /* Apply animation to this element */	
+  -moz-animation: example1 10s linear infinite;
+  -webkit-animation: example1 10s linear infinite;
+  animation: example1 20s linear infinite;
+ }
+ /* Move it (define the animation) */
+ @-moz-keyframes example1 {
+  0%   { -moz-transform: translateX(100%); }
+  100% { -moz-transform: translateX(-100%); }
+ }
+ @-webkit-keyframes example1 {
+  0%   { -webkit-transform: translateX(100%); }
+  100% { -webkit-transform: translateX(-100%); }
+ }
+ @keyframes example1 {
+  0%   { 
+  -moz-transform: translateX(100%); /* Firefox bug fix */
+  -webkit-transform: translateX(100%); /* Firefox bug fix */
+  transform: translateX(100%); 		
+  }
+  100% { 
+  -moz-transform: translateX(-100%); /* Firefox bug fix */
+  -webkit-transform: translateX(-100%); /* Firefox bug fix */
+  transform: translateX(-100%); 
+  }
+ }
+ .example1 h3:hover {
+  -moz-animation-play-state: paused;
+  -webkit-animation-play-state: paused;
+  animation-play-state: paused;
+  }
+ 
+
+
+.heading2{
+  text-transform:uppercase;
+  font-size: 3.5rem;
+  letter-spacing: 3px;
+  margin-right: -3px;
+  margin-bottom: 5rem;
+  text-align: center;
+  color: #333;
+  position:relative;
+}
+.heading2::after{
+  content: " ";
+  width: 25rem;
+  height: .8rem;
+  background-color: #45e19f;
+  position:absolute;
+  bottom:-2rem;
+  left:50%;
+  transform:translateX(-50%);
+  border-radius: 2rem;
+}
+
+
+.x{display: block;
+    margin-block-start: 1em;
+    margin-block-end: 1em;
+    margin-inline-start: 0px;
+    margin-inline-end: 0px;
+}
+
+
+.centerr{
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+  width: 50%;
+}
+.head{
+  text-transform:uppercase;
+  font-size: 3.5rem;
+  letter-spacing: 3px;
+  margin-right: -3px;
+  margin-bottom: 5rem;
+  text-align: center;
+  color: #333;
+  position:relative;
+}
+.head::after{
+  content: " ";
+  width: 45rem;
+  height: .8rem;
+  background-color: #45e19f;
+  position:absolute;
+  bottom:-2rem;
+  left:50%;
+  transform:translateX(-50%);
+  border-radius: 2rem;
+}
+
+
+
+#team i{
+  font-size:26px;
+  color:#555;
+}
+#team p{
+  font-weight:500;
+}
+#team .card1{
+  height:auto;
+  border-radius: 0;
+  box-shadow: 5px 5px 15px black;
+  transition: all 0.3s ease-in;
+  -webkit-transition: all 0.3s ease-in;
+  -moz-transition: all 0.3s ease-in;
+}
+#team .card1:hover{
+  background: 	#808080;
+color:#fff;
+border-radius: 5px;
+border: none;
+box-shadow: 5px 5px 10px #9E9E9E;
+}
+#team .card1:hover h3,#team .card:hover i{
+  color:#fff;
+}
+
+.tab {
+  overflow: hidden;
+  border: 1px solid #ccc;
+  background-color: #f1f1f1;
+}
+
+/* Style the buttons inside the tab */
+.tab button {
+  background-color: inherit;
+  float: left;
+  border: none;
+  outline: none;
+  cursor: pointer;
+  padding: 14px 16px;
+  transition: 0.3s;
+  font-size: 17px;
+}
+
+/* Change background color of buttons on hover */
+.tab button:hover {
+  background-color: #ddd;
+}
+
+/* Create an active/current tablink class */
+.tab button.active {
+  background-color: #ccc;
+}
+
+/* Style the tab content */
+.tabcontent {
+  display: none;
+  padding: 6px 12px;
+  border: 1px solid #ccc;
+  border-top: none;
+}
+html{
+font-size:10px; 
+line-height: 1.5;   
+}
+
+body {
+  font-family: 'Quicksand', sans-serif !important;
+  
+  line-height: 1.8;
+  color: rgba(0, 0, 0, 0.7);
+}
+
+
+a{
+  text-decoration: none;
+  color: #fff;
+}
+ 
+.heading{
+  text-transform:uppercase;
+  font-size: 3.5rem;
+  letter-spacing: 3px;
+  margin-right: -3px;
+  margin-bottom: 5rem;
+  text-align: center;
+  color: #333;
+  position:relative;
+}
+.heading::after{
+  content: " ";
+  width: 35rem;
+  height: .8rem;
+  background-color: #45e19f;
+  position:absolute;
+  bottom:-2rem;
+  left:50%;
+  transform:translateX(-50%);
+  border-radius: 2rem;
+}
+.card-wrapper{
+  display: flex;
+  align-items:center;
+  align-content: center;
+  flex-direction: column;
+}
+.card{
+  width: 32rem;
+  background-color: #ebeef8;
+  display:flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  margin: 2rem 0;
+  box-shadow: .5rem .5rem 3rem rgba(0, 0, 0, 0.2);
+}
+
+.card .card-img{
+  width: 100%;
+  height: 26rem;
+  object-fit:cover;
+  -webkit-clip-path: polygon(0 0,100% 0,100% 78%,0% 100%);
+  clip-path: polygon(0 0,100% 0,100% 78%,0% 100%);
+}
+.profile-img{
+  width:15rem;
+  height:15rem;
+  object-fit: cover;
+  border-radius: 50%;
+  margin-top: -11rem;
+  z-index: 999;
+  border:1rem solid #ebeef8;
+}
+.card h1{
+  font-size: 2.5rem;
+  color:#333;
+  margin:1.5rem 0;
+}
+.job-title{
+  color:#777;
+  font-size:1.5rem;
+  font-weight:300;
+}
+.about{
+  font-size: 1.5rem;
+  margin:1.5rem 0;
+  font-style: italic;
+  text-align: center;
+  color: #333;
+}
+.card .btn{
+  padding:1rem 2.5rem;
+  background-color: #445ae3;
+  border-radius: 2rem;
+  margin: 1rem 0;
+  text-transform: uppercase;
+  color:#eee;
+  font-size: 1.4rem;
+  transform: all .5s;
+}
+.card .btn:hover{
+  transform:translateY(0);
+  box-shadow: .5rem .5rem 2rem rgba(0, 0, 0, .2);
+}
+.card .btn:active{
+  transform: translateY(0);
+  box-shadow: none;
+}
+.social-media{
+  width: 100%;
+  list-style: none;
+  display: flex;
+  justify-content: space-evenly;
+  padding: 2rem 0;
+  margin-top: 1.5rem;
+  border-top: 1px solid rgba(0,0,0, .1);
+}
+.social-media i{
+  font-size: 3rem;
+  transition: color .5s;
+}
+.fa-facebook-square{
+  color:#3b5999;
+}
+.fa-twitter-square{
+  color:#55acee;
+}
+.fa-instagram{
+  color:#e6683c;
+}
+.fa-google-plus-square{
+  color:#dd4b69;
+}
+.fa-facebook-square:hover,
+.fa-facebook-square:hover,
+.fa-twitter-square:hover,
+.fa-google-plus-square:hover{
+  color:#45e19f;
+}
+@media screen and (min-width:700px){
+  .card-wrapper{
+    flex-direction: row;
+    flex-wrap: wrap;
+    justify-content: center;
+    align-items:center;
+  }
+  .card{
+    margin:2rem;
+    transition: transform .5s;
+  }
+   @keyframes fadeIn {
+     from{
+       opacity:0;
+     }
+     to{
+       opacity:1;
+     }
+    }
+     .card:nth-child(1){
+       animation: fadeIn .5s .5s backwards;
+     }
+     .card:nth-child(2){
+      animation: fadeIn .5s 1s backwards;
+    }
+    .card:nth-child(3){
+      animation: fadeIn .5s 1.5s backwards;
+    }
+    .card:nth-child(4){
+      animation: fadeIn .5s 2s backwards;
+    }
+     .card:hover{
+       transform: scale(1.05);
+     }
+  }
+
+
+
+
+
+
+.carousel-caption h3{
+padding-bottom: 300px;
+font-family: "Playfair Display", Georgia, serif;
+
+}
+
+.carousel-caption h2{
+  
+  font-size:50px;
+  font-family: "Playfair Display", Georgia, serif;
+}
+
+.navbar {
+  position: relative;
+  display: flex;
+  align-items: center;
+  padding: .5rem 1rem;
+  height:70px;
+}
+
+#logo
+{
+background-color:#002060; 
+height : 60px;
+}
+
+
+  .container2{
+    line-break: auto;
+padding-left: 20px;
+padding-right:20px;
+
+  }
+
+
+  <!-- news-->
+  .container 
+  {
+    width: 100%;
+    padding-right: 15px;
+    padding-left: 10px;
+    margin-right: auto;
+    margin-left: auto;
+  }
+ 
+ 
+ 
+  <!-- login-->
+  .card-container.card {
+    max-width: 350px;
+    padding: 40px 40px;
+}
+
+.btn {
+    font-weight: 700;
+    height: 36px;
+    -moz-user-select: none;
+    -webkit-user-select: none;
+    user-select: none;
+    cursor: default;
+}
+/*
+ * Card component
+ */
+ .card-container.card {
+  max-width: 350px;
+  padding: 40px 40px;
+}
+ .card {
+  background-color: #F7F7F7;
+  /* just in case there no content*/
+  padding: 20px 25px 30px;
+  margin: 0 auto 25px;
+  margin-top: 50px;
+  /* shadows and rounded borders */
+  -moz-border-radius: 2px;
+  -webkit-border-radius: 2px;
+  border-radius: 2px;
+  -moz-box-shadow: 0px 2px 2px rgba(0, 0, 0, 0.3);
+  -webkit-box-shadow: 0px 2px 2px rgba(0, 0, 0, 0.3);
+  box-shadow: 0px 2px 2px rgba(0, 0, 0, 0.3);
+}
+
+.profile-img-card {
+  width: 96px;
+  height: 96px;
+  margin: 0 auto 10px;
+  display: block;
+  -moz-border-radius: 50%;
+  -webkit-border-radius: 50%;
+  border-radius: 50%;
+}
+
+/*
+* Form styles
+*/
+.profile-name-card {
+  font-size: 16px;
+  font-weight: bold;
+  text-align: center;
+  margin: 10px 0 0;
+  min-height: 1em;
+}
+
+.reauth-email {
+  display: block;
+  color: #404040;
+  line-height: 2;
+  margin-bottom: 10px;
+  font-size: 14px;
+  text-align: center;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  -moz-box-sizing: border-box;
+  -webkit-box-sizing: border-box;
+  box-sizing: border-box;
+}
+
+.form-signin #inputEmail,
+.form-signin #inputPassword {
+  direction: ltr;
+  height: 44px;
+  font-size: 16px;
+}
+
+.form-signin input[type=email],
+.form-signin input[type=password],
+.form-signin input[type=text],
+.form-signin button {
+  width: 100%;
+  display: block;
+  margin-bottom: 10px;
+  z-index: 1;
+  position: relative;
+  -moz-box-sizing: border-box;
+  -webkit-box-sizing: border-box;
+  box-sizing: border-box;
+}
+
+.form-signin .form-control:focus {
+  border-color: rgb(104, 145, 162);
+  outline: 0;
+  -webkit-box-shadow: inset 0 1px 1px rgba(0,0,0,.075),0 0 8px rgb(104, 145, 162);
+  box-shadow: inset 0 1px 1px rgba(0,0,0,.075),0 0 8px rgb(104, 145, 162);
+}
+
+.btn.btn-signin {
+  /*background-color: #4d90fe; */
+  background-color: rgb(104, 145, 162);
+  /* background-color: linear-gradient(rgb(104, 145, 162), rgb(12, 97, 33));*/
+  padding: 0px;
+  font-weight: 700;
+  font-size: 14px;
+  height: 36px;
+  -moz-border-radius: 3px;
+  -webkit-border-radius: 3px;
+  border-radius: 3px;
+  border: none;
+  -o-transition: all 0.218s;
+  -moz-transition: all 0.218s;
+  -webkit-transition: all 0.218s;
+  transition: all 0.218s;
+}
+
+.btn.btn-signin:hover,
+.btn.btn-signin:active,
+.btn.btn-signin:focus {
+  background-color: rgb(12, 97, 33);
+}
+
+.forgot-password {
+  color: rgb(104, 145, 162);
+}
+
+.forgot-password:hover,
+.forgot-password:active,
+.forgot-password:focus{
+  color: rgb(12, 97, 33);
+}
+

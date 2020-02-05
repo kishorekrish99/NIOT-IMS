@@ -1,45 +1,94 @@
 @extends('layouts.app')
 @section('css')
 <link href="{{url('assets/css/login-register.css')}}" rel="stylesheet" />
+<script type="text/javascript" src="{{url('assets/js/login-register.js')}}"></script>
 @endsection
 @section('content')
-<div class="content">
-    <div class="container">
-
-        <div style="padding-left: 20%;padding-right: 20%;padding-top: 15%;">
-            <!-- Card -->
-            <div class="card card-image" style="background-image: url(qwert.jpg);">
-                <!-- Content -->
-
-                <div class="row" style="padding-top:50px;padding-bottom: 50px;">
-                    <div class="col-sm-4"></div>
-                    <div class="col-sm-4">
-                        <div style="padding-left: 10%;"> <a class="btn big-login waves-effect waves-light"
-                                data-toggle="modal" href="javascript:void(0)" onclick="openLoginModal();">Log in</a>
-                        </div>
-                        <div style="padding-top:20px;padding-left:7%;"><a class="btn big-login waves-effect waves-light"
-                                data-toggle="modal" href="javascript:void(0)"
-                                onclick="openRegisterModal();">Register</a></div>
-                    </div>
-                    <div class="col-sm-4"></div>
+<div class="row">
+    <div class="col">
+    <div id="carouselExampleIndicators" class="carousel slide" data-ride="carousel" style="width:150%;padding-top:10%;">
+            <ol class="carousel-indicators">
+                <li data-target="#carouselExampleIndicators" data-slide-to="0" class="active"></li>
+                <li data-target="#carouselExampleIndicators" data-slide-to="1"></li>
+                <li data-target="#carouselExampleIndicators" data-slide-to="2"></li>
+            </ol>
+            <div class="carousel-inner">
+                <div class="carousel-item active">
+                    <img class="d-block w-100" src="{{url('assets/images/11.png')}}" alt="First slide">
+                </div>
+                <div class="carousel-item">
+                    <img class="d-block w-100" src="{{url('assets/images/11.png')}}" alt="Second slide">
+                </div>
+                <div class="carousel-item">
+                    <img class="d-block w-100" src="{{url('assets/images/11.png')}}" alt="Third slide">
                 </div>
             </div>
-
+            <a class="carousel-control-prev" href="#carouselExampleIndicators" role="button" data-slide="prev">
+                <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                <span class="sr-only">Previous</span>
+            </a>
+            <a class="carousel-control-next" href="#carouselExampleIndicators" role="button" data-slide="next">
+                <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                <span class="sr-only">Next</span>
+            </a>
+            </div>
         </div>
+    <div class="container">
+    <div class="row">
+      <div class="col-sm-9 col-md-7 col-lg-5 mx-auto">
+        <div class="card card-signin my-5">
+          <div class="card-body">
+            <h5 class="card-title text-center">Sign In</h5>
+            <form class="form-signin" method="POST" accept-charset="UTF-8" action="{{ url('login') }}">
+                @csrf
+              <div class="form-label-group">
+                <input type="email" id="inputEmail" class="form-control" name="email" placeholder="Email address" required autofocus>
+                <label for="inputEmail">Email address</label>
+                @error('email')
+                    <span class="invalid-feedback" role="alert">
+                        <strong>{{ $message }}</strong>
+                    </span>
+                @enderror
+              </div>
+
+              <div class="form-label-group">
+                <input type="password" id="inputPassword" class="form-control" name="password" placeholder="Password" required>
+                <label for="inputPassword">Password</label>
+                @error('password')
+                    <span class="invalid-feedback" role="alert">
+                        <strong>{{ $message }}</strong>
+                    </span>
+                @enderror
+              </div>
+
+              <div class="custom-control custom-checkbox mb-3">
+                <input type="checkbox" class="custom-control-input" id="customCheck1">
+                <label class="custom-control-label" for="customCheck1">Remember password</label>
+              </div>
+              <button class="btn btn-lg btn-primary btn-block text-uppercase" type="submit">Sign in</button>
+              <hr class="my-4">
+              <button class="btn btn-lg btn-google btn-block text-uppercase" type="submit"><i class="fab fa-google mr-2"></i> Sign in with Google</button>
+              <button class="btn btn-lg btn-facebook btn-block text-uppercase" type="submit"><i class="fab fa-facebook-f mr-2"></i> Sign in with Facebook</button>
+            </form>
+          </div>
+        </div>
+      </div>
     </div>
+  </div>
     <div class="modal fade login" id="loginModal" style="display: none;">
         <div class="modal-dialog login animated">
             <div class="modal-content">
                 <div class="modal-header">
-                    <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                    
                     <h4 class="modal-title">Login with</h4>
+                    <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
                 </div>
                 <div class="modal-body">
                     <div class="box">
                         <div class="content">
                             <div class="social">
                                 <a class="circle github" href="#">
-                                    <i class="fa fa-github fa-fw"></i>
+                                <i class="fa fa-github" aria-hidden="true"></i>
                                 </a>
                                 <a id="google_login" class="circle google" href="#">
                                     <i class="fa fa-google-plus fa-fw"></i>
@@ -108,43 +157,51 @@
         </div>
     </div>
 </div>
-@endsection
-@section('js')
-<script type="text/javascript" src="{{url('assets/js/login-register.js')}}"></script>
-<script src="//js.pusher.com/3.1/pusher.min.js"></script>
-<script type="text/javascript">
-    var notificationsWrapper = $('.dropdown-notifications');
-    var notificationsToggle = notificationsWrapper.find('a[data-toggle]');
-    var notificationsCountElem = notificationsToggle.find('i[data-count]');
-    var notificationsCount = parseInt(notificationsCountElem.data('count'));
-    var notifications = notificationsWrapper.find('ul.dropdown-menu');
 
-    if (notificationsCount <= 0) {
-        notificationsWrapper.hide();
-    }
 
-    // Enable pusher logging - don't include this in production
-    Pusher.logToConsole = true;
+    </div>
+</div>
+<!---------------Cards---------------------->
+<div class="row" style=";padding-top:10%;">
+    <div style="padding-left:35px;">
+        <div class="card text-white bg-primary mb-3" style="max-width: 18rem;">
+                <div class="card-header">Inventory Management System</div>
+                <div class="card-body">
+                    <p class="card-text">Inventory management software is a software system for tracking inventory levels, orders, sales and deliveries.It can also be used in the manufacturing industry to create a work order, bill of materials and other production documents. </p>
+                </div>
+        </div>
+    </div>  
+    <div style="padding-left:35px;">
+        <div class="card text-white bg-primary mb-3" style="max-width: 18rem;">
+            <div class="card-header">RF ID</div>
+            <div class="card-body">
+                <p class="card-text">Radio-frequency identification (RFID) uses electromagnetic fields to automatically identify and track tags attached to objects. An RFID tag consists of a tiny radio transponder; a radio receiver and transmitter.</p>
+            </div>
+        </div>
+    </div>
+    <div style="padding-left:35px;">
+        <div class="card text-white bg-primary mb-3" style="max-width: 18rem;">
+            <div class="card-header">VISION</div>
+            <div class="card-body">
+            <p>The project aims to create a hassle free software interface to manage the inventory using RFID tech. Software records the position of the inventory along with time &nbsp &nbsp &nbsp &nbsp &nbsp and keep track of the dept.&nbsp &nbsp &nbsp &nbsp</p>
+            </div>
+        </div>
+    </div>
+    <div class="col">
+    <iframe width="350" height="250" src="https://www.youtube.com/embed/WgZe7Q5BDig" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+    </div>
+</div>
+<!-----------footer--------------------------->
+<div>
+<footer id="sticky-footer" class="py-4 bg-secondary text-white-50" style=" flex-shrink: none;">
+    <div class="container text-center">
+      <small>Copyright &copy; Inventory management system</small>
+    </div>
+  </footer>
 
-    var pusher = new Pusher('1d2dd1e49b72be42e451', {
-        cluster: 'ap2'
-    });
 
-    // Subscribe to the channel we specified in our Laravel Event
-    var channel = pusher.subscribe('RFID-Scanned');
+</div>
 
-    // Bind a function to a Event (the full Laravel class)
-    channel.bind('App\\Events\\RFIDScanned', function (data) {
-        console.log('asdas')
-        var existinghtml = $('.data').html();
-        var newNotificationHtml = `<div class="title m-b-md data">
-            ` + data.message + `
-        </div>`
-        $('.data').html(newNotificationHtml + existinghtml);
-        notificationsCount += 1;
-    });
-
-</script>
 @endsection
 </body>
 
