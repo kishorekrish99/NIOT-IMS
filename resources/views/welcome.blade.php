@@ -11,7 +11,7 @@
 @section('content')
 <div class="row">
     <div class="col">
-    <div id="carouselExampleIndicators" class="carousel slide" data-ride="carousel" style="width:150%;padding-top:2%;">
+    <div id="carouselExampleIndicators" class="carousel slide" data-ride="carousel" style="width:325%;padding-top:2%;padding-left:10px;">
             <ol class="carousel-indicators">
                 <li data-target="#carouselExampleIndicators" data-slide-to="0" class="active"></li>
                 <li data-target="#carouselExampleIndicators" data-slide-to="1"></li>
@@ -19,7 +19,7 @@
             </ol>
             <div class="carousel-inner">
                 <div class="carousel-item active">
-                    <img class="d-block w-100" src="{{url('assets/images/11.png')}}" alt="First slide">
+                    <img class="d-block w-100" src="{{url('assets/images/11.png')}}" alt="First slide" height="550px;">
                 </div>
                 <div class="carousel-item">
                     <img class="d-block w-100" src="{{url('assets/images/cmrec.jpg')}}" alt="Second slide" height="550px">
@@ -43,6 +43,10 @@
       <div class="col-sm-9 col-md-7 col-lg-5 mx-auto">
         <div class="card card-signin my-5">
           <div class="card-body">
+
+            <img src="{{url('assets/images/niot-icon.jpg')}}" style="width: 10em;
+    margin-left: 112px;">
+            <hr class="my-4">
             <h5 class="card-title text-center">Sign In</h5>
             <form class="form-signin" method="POST" accept-charset="UTF-8" action="{{ url('login') }}">
                 @csrf
@@ -71,9 +75,6 @@
                 <label class="custom-control-label" for="customCheck1">Remember password</label>
               </div>
               <button class="btn btn-lg btn-primary btn-block text-uppercase" type="submit">Sign in</button>
-              <hr class="my-4">
-              <button class="btn btn-lg btn-google btn-block text-uppercase" type="submit"><i class="fab fa-google mr-2"></i> Sign in with Google</button>
-              <button class="btn btn-lg btn-facebook btn-block text-uppercase" type="submit"><i class="fab fa-facebook-f mr-2"></i> Sign in with Facebook</button>
             </form>
           </div>
         </div>

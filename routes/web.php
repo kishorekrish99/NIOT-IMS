@@ -35,7 +35,9 @@ Route::get('search',function(){
 
 Route::get('list','DepartmentController@getDepartmentList');
 
-
+Route::get('register-rfid',function(){
+  return view('register-rfid');
+});
 
 
 Route::get('getDepartmentList',function(){
