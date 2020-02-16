@@ -144,12 +144,13 @@ $(document).ready(function() {
             $('#'+data['RFID']+' #dname')[0].innerText = data['department'];
             $('#'+data['RFID']+' #check_out'+'')[0].innerText=' ';
             $('#'+data['RFID']+' #status')[0].innerText = data['status'];
-            $('#'+data['RFID']+' #check_out').effect("highlight", {color: "#ccffb3"}, 3000);
+            //$('#'+data['RFID']+' #check_out').effect("highlight", {color: "#ccffb3"}, 3000);
             $('#'+data['RFID']+' #dname').effect("highlight", {color: "#ccffb3"}, 3000);
             $('#'+data['RFID']+' #status').effect("highlight", {color: "#ccffb3"}, 3000);
         }
         console.log(data['message']=== 'check_out');
         if(data['message'] === 'check_out'){
+            $('#'+data['RFID']+' #check_out'+'')[0].innerText=' ';
             $('#'+data['RFID']+' #status'+'')[0].innerText='in Department';
             $('#'+data['RFID']+' #status').effect("highlight", {color: "#ccffb3"}, 3000);
         }

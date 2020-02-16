@@ -19,7 +19,7 @@
               <label class="sr-only" for="inlineFormInputGroupUsername">Component Name</label>
               <div class="input-group">
                 <div class="input-group-prepend">
-                  <div class="input-group-text">icon</div>
+                  <div class="input-group-text">Component Name</div>
                 </div>
                 <input type="text" class="form-control" id="inlineFormInputGroupUsername" placeholder="Component name" value="{{$cname}}" disabled="true">
               </div>

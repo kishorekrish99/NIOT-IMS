@@ -11,7 +11,7 @@
 @section('content')
 <div class="row">
     <div class="col">
-    <div id="carouselExampleIndicators" class="carousel slide" data-ride="carousel" style="width:325%;padding-top:2%;padding-left:10px;">
+    <div id="carouselExampleIndicators" class="carousel slide" data-ride="carousel" style="width:180%;padding-top:2%;padding-left:10px;">
             <ol class="carousel-indicators">
                 <li data-target="#carouselExampleIndicators" data-slide-to="0" class="active"></li>
                 <li data-target="#carouselExampleIndicators" data-slide-to="1"></li>
@@ -19,13 +19,13 @@
             </ol>
             <div class="carousel-inner">
                 <div class="carousel-item active">
-                    <img class="d-block w-100" src="{{url('assets/images/11.png')}}" alt="First slide" height="550px;">
+                    <img class="w-100" src="{{url('assets/images/11.png')}}" alt="First slide" height="550px;">
                 </div>
                 <div class="carousel-item">
-                    <img class="d-block w-100" src="{{url('assets/images/cmrec.jpg')}}" alt="Second slide" height="550px">
+                    <img class="w-100" src="{{url('assets/images/cmrec.jpg')}}" alt="Second slide" height="550px">
                 </div>
                 <div class="carousel-item">
-                    <img class="d-block w-100" src="{{url('assets/images/niot.png')}}" alt="Third slide" height="550px">
+                    <img class="w-100" src="{{url('assets/images/niot.png')}}" alt="Third slide" height="550px">
                 </div>
             </div>
             <a class="carousel-control-prev" href="#carouselExampleIndicators" role="button" data-slide="prev">

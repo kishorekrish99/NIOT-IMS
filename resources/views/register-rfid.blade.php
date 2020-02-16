@@ -20,5 +20,6 @@
     <label for="inputAddress2">sub component Name</label>
     <input type="text" class="form-control" id="inputAddress2" placeholder="subcomponent name">
   </div> 
+  <input type="submit">
 </form>
 @endsection
