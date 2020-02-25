@@ -6,32 +6,32 @@
        <div class="row">
             
             <div class="col-sm-3 my-1">
-              <label class="sr-only" for="inlineFormInputGroupUsername">RFID</label>
+              <label class="sr-only" for="rfid">RFID</label>
               <div class="input-group">
                 <div class="input-group-prepend">
                   <div class="input-group-text">RFID</div>
                 </div>
-                <input type="text" class="form-control" id="inlineFormInputGroupUsername" placeholder="RFID" value="{{$rfid}}" name="rfid">
+                <input type="text" class="form-control" id="rfid" placeholder="RFID" value="{{$rfid}}" name="rfid">
               </div>
             </div>
             
             <div class="col-sm-3 my-1">
-              <label class="sr-only" for="inlineFormInputGroupUsername">Component Name</label>
+              <label class="sr-only" for="componentName">Component Name</label>
               <div class="input-group">
                 <div class="input-group-prepend">
                   <div class="input-group-text">Component Name</div>
                 </div>
-                <input type="text" class="form-control" id="inlineFormInputGroupUsername" placeholder="Component name" value="{{$cname}}" disabled="true">
+                <input type="text" class="form-control" id="componentName" placeholder="Component name" value="{{$cname}}" disabled="true">
               </div>
             </div>
 
             <div class="col-sm-3 my-1">
-              <label class="sr-only" for="inlineFormInputGroupUsername">Department Name</label>
+              <label class="sr-only" for="depaertmentName">Department Name</label>
               <div class="input-group">
                 <div class="input-group-prepend">
                   <div class="input-group-text">Dept.</div>
                 </div>
-                <input type="text" class="form-control" id="inlineFormInputGroupUsername" placeholder="RFID" value="{{$dept}}" disabled="true">
+                <input type="text" class="form-control" id="depaertmentName" placeholder="RFID" value="{{$dept}}" disabled="true">
               </div>
             </div>
             <input type="submit" class="btn btn-primary">
@@ -43,6 +43,7 @@
             <tr>
                 <th>SNO</th>
                 <th>Department</th>
+                <th>Status</th>
                 <th>Check_in</th>
                 <th>Check_out</th>
             </tr>
@@ -100,7 +101,8 @@ $(document).ready(function() {
                 "defaultContent": ''
             },
             { data: "dname"},
-            { data: "check_in" },
+            { data: "status_name"},
+            { data: "check_in"},
             { data: "check_out"},
         ],
         "autoWidth": true,        

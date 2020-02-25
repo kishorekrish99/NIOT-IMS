@@ -98,11 +98,14 @@ class LogsController extends Controller
         $data =collect(DB::select("select
   [departments].[name] as [dname],
   format([logs].[check_in],'dd/MM/yyyy, hh:mm:ss tt') as check_in,
-  format([logs].[check_out],'dd/MM/yyyy, hh:mm:ss tt') as check_out
+  format([logs].[check_out],'dd/MM/yyyy, hh:mm:ss tt') as check_out,
+  [statuses].[name] as status_name
 from
   [logs]
   inner join [departments] on [logs].[department_id] = [departments].[id]
   inner join [rfids] on [logs].[rfid_id] = [rfids].[id]
+  join [scanners] on [logs].[scanner_id] = [scanners].[id]
+  join [statuses] on [scanners].[status_id] = [statuses].[id]
 where
   [rfids].[RFID] ='".$rfid."'
 order by
