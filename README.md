@@ -1,6 +1,7 @@
 # NIOT-IMS
  
 Project Description:
+
 NIOT IMS (RFID Inventory Management System) is a cutting-edge web application designed to facilitate seamless inventory tracking within a single building using RFID (Radio Frequency Identification) technology. With its advanced features and intuitive interface, NIOT IMS provides administrators with robust tools to monitor and manage inventory levels efficiently.
 
 Key Features:
